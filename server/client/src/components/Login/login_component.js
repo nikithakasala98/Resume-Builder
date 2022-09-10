@@ -71,7 +71,7 @@ export default class Login extends Component {
           </div>
 
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary" disabled={!this.state.formValid}>
+          <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
