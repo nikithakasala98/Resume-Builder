@@ -1,3 +1,5 @@
+require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -17,11 +19,8 @@ const PORT  = process.env.PORT || 5000;
 const JWT_SECRET =
   "RESUMEBUILDERpestoPROJECT";
 
-const mongoUrl =(process.env.MONGODB_URI || 
-  "mongodb+srv://nikithakasala:nikitha@cluster0.7ovcb6o.mongodb.net/Resume-Builder?retryWrites=true&w=majority");
-
 mongoose
-  .connect(mongoUrl, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
   })
   .then(() => {
@@ -96,6 +95,9 @@ app.post("/userData", async (req, res) => {
 if(process.env.NODE_ENV === "production"){
     app.use(express.static("client/build"));
 }
+app.get('*',(req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log("Server Started");
