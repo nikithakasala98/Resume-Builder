@@ -5,6 +5,7 @@ import InputControl from "../InputControl/InputControl";
 
 import styles from "./Editor.module.css";
 
+fetch(`/fetchResumeData?useId=${window.localStorage.getItem("email")}`).then((response) => console.log("hi",response))
 function Editor(props) {
   const sections = props.sections;
   const information = props.information;
@@ -227,7 +228,8 @@ function Editor(props) {
       <div className={styles.row}>
         <InputControl
           label="Name"
-          placeholder="Enter your full name eg. Aashu"
+          maxLength="50"
+          placeholder="Enter your full name eg. Sudhesh Holla"
           value={values.name}
           onChange={(event) =>
             setValues((prev) => ({ ...prev, name: event.target.value }))
@@ -236,6 +238,7 @@ function Editor(props) {
         <InputControl
           label="Title"
           value={values.title}
+          maxLength="150"
           placeholder="Enter your title eg. Frontend developer"
           onChange={(event) =>
             setValues((prev) => ({ ...prev, title: event.target.value }))
@@ -263,6 +266,7 @@ function Editor(props) {
       <div className={styles.row}>
         <InputControl
           label="Email"
+          maxLength="200"
           value={values.email}
           placeholder="Enter your email"
           onChange={(event) =>
@@ -272,6 +276,7 @@ function Editor(props) {
         <InputControl
           label="Enter phone"
           value={values.phone}
+          maxLength="10"
           placeholder="Enter your phone number"
           onChange={(event) =>
             setValues((prev) => ({ ...prev, phone: event.target.value }))
@@ -356,7 +361,7 @@ function Editor(props) {
   const handleSubmission = () => {
     switch (sections[activeSectionKey]) {
       case sections.basicInfo: {
-        const tempDetail = {
+        var basicData = {
           name: values.name,
           title: values.title,
           linkedin: values.linkedin,
@@ -365,18 +370,29 @@ function Editor(props) {
           phone: values.phone,
         };
 
+        let mobileRegex = new RegExp(/^[6-9]\d{9}$/);
+        let emailRex = new RegExp(/^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([\.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i);
+        if(basicData.name === ""){
+          alert("Please Enter the Name")
+        } else if(basicData.title === ""){
+          alert("Please Enter the Title")
+        } else if(basicData.email === "" || (!emailRex.test(basicData.email.trim()))){
+          alert("Please Enter Valid Email")
+        } else if(basicData.phone === "" || (!mobileRegex.test(basicData.phone.trim()))){
+          alert("Please Enter Valid Phone Number")
+        }
         props.setInformation((prev) => ({
           ...prev,
           [sections.basicInfo]: {
             ...prev[sections.basicInfo],
-            detail: tempDetail,
+            detail: basicData,
             sectionTitle,
           },
         }));
         break;
       }
       case sections.workExp: {
-        const tempDetail = {
+        var workData = {
           certificationLink: values.certificationLink,
           title: values.title,
           startDate: values.startDate,
@@ -386,7 +402,16 @@ function Editor(props) {
           points: values.points,
         };
         const tempDetails = [...information[sections.workExp]?.details];
-        tempDetails[activeDetailIndex] = tempDetail;
+        tempDetails[activeDetailIndex] = workData;
+        if(workData.title === ""){
+          alert("Please Enter the Work Experience Title")
+        } else if(workData.startDate === ""){
+          alert("Please Enter Start Date")
+        } else if(workData.companyName === ""){
+          alert("Please Enter Company Name")
+        } else if(workData.location === ""){
+          alert("Please Enter Work Location")
+        }
 
         props.setInformation((prev) => ({
           ...prev,
@@ -399,7 +424,7 @@ function Editor(props) {
         break;
       }
       case sections.project: {
-        const tempDetail = {
+        var projectData = {
           link: values.link,
           title: values.title,
           overview: values.overview,
@@ -407,7 +432,10 @@ function Editor(props) {
           points: values.points,
         };
         const tempDetails = [...information[sections.project]?.details];
-        tempDetails[activeDetailIndex] = tempDetail;
+        tempDetails[activeDetailIndex] = projectData;
+        if(projectData.title === ""){
+          alert("Please Enter the Project Title")
+        }
 
         props.setInformation((prev) => ({
           ...prev,
@@ -420,14 +448,23 @@ function Editor(props) {
         break;
       }
       case sections.education: {
-        const tempDetail = {
+        var educationData = {
           title: values.title,
           college: values.college,
           startDate: values.startDate,
           endDate: values.endDate,
         };
         const tempDetails = [...information[sections.education]?.details];
-        tempDetails[activeDetailIndex] = tempDetail;
+        tempDetails[activeDetailIndex] = educationData;
+        if(educationData.title === ""){
+          alert("Please Enter the Education Title");
+        } else if(educationData.college === ""){
+          alert("Please Enter College/School Name")
+        } else if(educationData.startDate === ""){
+          alert("Please Enter Start Date")
+        } else if(educationData.endDate === ""){
+          alert("Please Enter End Date")
+        }
 
         props.setInformation((prev) => ({
           ...prev,
@@ -440,7 +477,7 @@ function Editor(props) {
         break;
       }
       case sections.achievement: {
-        const tempPoints = values.points;
+        var tempPoints = values.points;
 
         props.setInformation((prev) => ({
           ...prev,
@@ -453,32 +490,54 @@ function Editor(props) {
         break;
       }
       case sections.summary: {
-        const tempDetail = values.summary;
+        var summaryData = values.summary;
 
         props.setInformation((prev) => ({
           ...prev,
           [sections.summary]: {
             ...prev[sections.summary],
-            detail: tempDetail,
+            detail: summaryData,
             sectionTitle,
           },
         }));
         break;
       }
       case sections.other: {
-        const tempDetail = values.other;
+        var otherData = values.other;
 
         props.setInformation((prev) => ({
           ...prev,
           [sections.other]: {
             ...prev[sections.other],
-            detail: tempDetail,
+            detail: otherData,
             sectionTitle,
           },
         }));
         break;
       }
     }
+      fetch("http://localhost:5000/saveResumeData", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          userId: window.localStorage.getItem("email"),
+          basicInfo : basicData,
+          workExp : workData,
+          projects : projectData,
+          education : educationData,
+          achievements : tempPoints,
+          summary : summaryData,
+          others : otherData
+        }),
+      }).then((res) => res.json())
+        .then((data) => {
+          console.log(data, "userRegister");
+        });
   };
 
   const handleAddNew = () => {

@@ -7,6 +7,7 @@ import Login from "./components/Login/login_component";
 import SignUp from "./components/Login/signup_component";
 import ResumeBuilder from "./components/ResumeBuilder/ResumeBuilder";
 import Navbar from "./components/Login/Navbar";
+import Reset from "./components/Login/reset";
 
 function App() {
   return (   
@@ -19,6 +20,7 @@ function App() {
               <Route exact path="/" element={<Login />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/forgot-password" element={<Reset />} />
             </Routes>
           </div>
         </div>

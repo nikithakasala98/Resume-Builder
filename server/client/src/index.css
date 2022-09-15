@@ -41,7 +41,7 @@ html,
   justify-content: center;
   flex-direction: column;
   text-align: left;
-  background: #E3F2FD;
+  background: #E3F2FD !important;
 }
 
 .auth-inner {

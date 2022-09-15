@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import './Login.module.css';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -14,12 +13,6 @@ export default class SignUp extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    if(fname.length<=3 && fname.length>=16){
-      alert("First Name should between 3-16");
-    }
-    else if(lname.length<=3 && lname.length>=16){
-      alert("Last Name should between 3-16")
-    }
     const { fname, lname, email, password } = this.state;
     console.log(fname, lname, email, password);
     fetch("http://localhost:5000/register", {
@@ -39,6 +32,7 @@ export default class SignUp extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
+        alert("Sign Up Successful. Please Redirect to Sign In Page.")
         console.log(data, "userRegister");
       });
   }
