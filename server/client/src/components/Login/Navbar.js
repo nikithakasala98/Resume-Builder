@@ -9,7 +9,7 @@ function Navbar() {
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
             <Link className="navbar-brand" to={'/sign-in'}>
-              positronX
+              Resume-Builder
             </Link>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
