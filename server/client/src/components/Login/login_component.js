@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Login.css";
 
 
 export default class Login extends Component {
@@ -49,56 +50,45 @@ export default class Login extends Component {
   
   render() {
     return (
-      <div id ="login">
-        <form onSubmit={this.handleSubmit}>
-          <h3>Sign In</h3>
-          
-            <div className="mb-3">
-              <label htmlFor="email">Email address</label>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                placeholder="Enter email"
-                value={this.state.email}
-                onChange={(e) => this.setState({ email: e.target.value })}
-              />
-            </div>
-          
-            <div className="mb-3">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                placeholder="Enter password"
-                value={this.state.password}
-                onChange={(e) => this.setState({ password: e.target.value })}
-              />
-            </div> 
-
-        <div className="mb-3">
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
+      <div className="auth-wrapper">
+        <div className="auth-inner">
+            <form onSubmit={this.handleSubmit}>
+              <h3>Sign In</h3>
+              
+                <div className="mb-3">
+                  <label htmlFor="email">Email address</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    name="email"
+                    placeholder="Enter email"
+                    value={this.state.email}
+                    onChange={(e) => this.setState({ email: e.target.value })}
+                  />
+                </div>
+              
+                <div className="mb-3">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    placeholder="Enter password"
+                    value={this.state.password}
+                    onChange={(e) => this.setState({ password: e.target.value })}
+                  />
+                </div> 
+              <div className="d-grid">
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+              <p className="forgot-password text-right">
+                <a href="/forgot-password">Forgot-Password?</a>
+              </p>
+            </form>
           </div>
         </div>
-          <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </div>
-          <p className="forgot-password text-right">
-             <a href="/forgot-password">Forgot-Password?</a>
-          </p>
-        </form>
-      </div>
     );
   }
 
