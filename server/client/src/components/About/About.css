@@ -9,7 +9,7 @@ body{
 }
 #about{
 	width:100%;
-    height: 597px;
+    height: 100vh;
 	background-color:#E3F2FD;
 	box-sizing: border-box;
 	display: flex;
