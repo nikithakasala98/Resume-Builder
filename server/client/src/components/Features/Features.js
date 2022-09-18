@@ -11,7 +11,7 @@ function Features(props){
             <div className='a-container'>
                 <FeatureBox image={featureimage} title='Build Your Resume' description = 'Help job seekers to create, make, edit and share resume.'/>
                 <FeatureBox image={featureimage1} title='Faster Resume Building' description = 'Webpage designed interactively which helps in faster resume building.'/>
-                <FeatureBox image={featureimage2} title='Download in PDF' description = 'You can download Resume in PDF format'/>
+                <FeatureBox image={featureimage2} title='Download in PDF' description = 'You can download Resume in PDF format.'/>
             </div>
         </div>
     );

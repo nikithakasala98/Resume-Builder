@@ -5,14 +5,45 @@ import InputControl from "../InputControl/InputControl";
 
 import styles from "./Editor.module.css";
 
-fetch(`/fetchResumeData?useId=${window.localStorage.getItem("email")}`).then((response) => console.log("hi",response))
+var fetchedResumeData = [];
+var fetchedBasicInfo;
+var fetchedWorkExp;
+var fetchedProjectData;
+var fetchedEducationData;
+var fetchedAchivementData;
+var fetchedSummaryData;
+var fetchedOthersData;
+console.log("++++++++++++++++++++", `getResumeData?useId=${window.localStorage.getItem("email")}`)
+//fetch(`/getResumeData/${window.localStorage.getItem("email")}`).then((response) => console.log("hi",response))
 function Editor(props) {
+  useEffect(()=>{
+    fetch(`http://localhost:5000/getResumeData/${window.localStorage.getItem("email")}`, {
+        method: "GET",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        }
+      })
+      .then((response) => {
+        return response.text()
+      }).then(function(data) {
+        fetchedResumeData = JSON.parse(data);
+        console.log(JSON.parse(data))
+        console.log(fetchedResumeData[Object.keys(fetchedResumeData)[0]].basicInfo[0])
+        fetchedBasicInfo = fetchedResumeData[Object.keys(fetchedResumeData)[0]].basicInfo[0]
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
   const sections = props.sections;
-  const information = props.information;
 
   const [activeSectionKey, setActiveSectionKey] = useState(
     Object.keys(sections)[0]
   );
+  const information = props.information;
   const [activeInformation, setActiveInformation] = useState(
     information[sections[Object.keys(sections)[0]]]
   );
@@ -666,7 +697,7 @@ function Editor(props) {
 
       <div className={styles.body}>
         <InputControl
-          label="Title"
+          label="Section Title"
           placeholder="Enter section title"
           value={sectionTitle}
           onChange={(event) => setSectionTitle(event.target.value)}

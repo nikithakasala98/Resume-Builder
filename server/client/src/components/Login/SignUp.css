@@ -50,7 +50,7 @@ span {
 }
 
 .auth-wrapper .form-control:focus {
-  border-color: #167bff;
+  border-color: #00b7ff;
   box-shadow: none;
 }
 
@@ -60,7 +60,9 @@ span {
   line-height: 1;
   padding-bottom: 20px;
 }
-
+.btn{
+  background-color: #00b7ff;
+}
 .custom-control-label {
   font-weight: 400;
 }
@@ -75,5 +77,5 @@ span {
 }
 
 .forgot-password a {
-  color: #167bff;
+  color: #00b7ff;
 }

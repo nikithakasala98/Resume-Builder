@@ -2,6 +2,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const app = express();
+const router= require('express').Router();
 const mongoose = require("mongoose");
 app.use(express.json());
 const cors = require("cors");
@@ -29,6 +30,7 @@ mongoose
   .catch((e) => console.log(e));
 
 require("./db/userDetails");
+require("./db/resumeDetails");
 
 const User = mongoose.model("UserInfo");
 app.post("/register", async (req, res) => {
@@ -56,11 +58,25 @@ app.post("/register", async (req, res) => {
   }
 });
 
+const resumeData = mongoose.model("resumeData");
+app.post("/saveResumeData", async (req, res) => {
+const { userId, basicInfo, workExp, projects, education, achievements, summary, others } = req.body;
+console.log("basicInfo is here 2", basicInfo, userId)
+try {
+  await resumeData.create({
+    userId, basicInfo, workExp, projects, education, achievements, summary, others
+  });
+  res.send({ status: "ok" });
+} catch (error) {
+  res.send({ status: "error" });
+}
+});
 app.post("/login-user", async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
   if (!user) {
+    alert("User not found !!")
     return res.json({ error: "User Not found" });
   }
   if (await bcrypt.compare(password, user.password)) {
@@ -72,6 +88,7 @@ app.post("/login-user", async (req, res) => {
       return res.json({ error: "error" });
     }
   }
+  alert("Invalid Password")
   res.json({ status: "error", error: "InvAlid Password" });
 });
 
@@ -187,4 +204,11 @@ app.post("/reset-password/:id/:token", async (req, res) => {
     console.log(error);
     res.json({ status: "Something Went Wrong" });
   }
+});
+app.get("/getResumeData/:userId", async (req, res) => {
+  console.log("req.params", req.params.userId);
+  let userId = req.params.userId;
+  resumeData.find(({userId: userId}), function(err, val){
+    res.send(val);
+  })
 });

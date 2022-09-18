@@ -40,6 +40,7 @@ function Contact(props){
                                     className="input100"
                                     type="text"
                                     name="fullName"
+                                    placeholder="Enter your Name"
                                     required
                                 />
                                 <br />
@@ -47,8 +48,9 @@ function Contact(props){
                                 <br/>
                                 <input
                                     className="input100"
-                                    type="number"
+                                    type="text"
                                     name="phone"
+                                    placeholder="Enter your Number"
                                     required
                                 />
                                 <br />
@@ -58,6 +60,7 @@ function Contact(props){
                                     className="input100"
                                     type="text"
                                     name="email"
+                                    placeholder="Enter your Email"
                                     required
                                 />
                                 <br/>
@@ -65,7 +68,7 @@ function Contact(props){
                             <div className="formWord">  
                                 <span>Message</span>
                                 <br/>
-                                <textarea name="message" required></textarea>               
+                                <textarea name="message" placeholder="Send Message" required></textarea>               
                                 <br/>
                                 <button>SUBMIT</button>
 

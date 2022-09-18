@@ -54,7 +54,7 @@ body{
     font-family: calibri;
     display: block;
     display: -webkit-box;
-    max-width: 80%;
+    max-width: 95%;
     margin-top: 25px;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
