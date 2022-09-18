@@ -38,12 +38,6 @@ function Editor(props) {
         console.log(JSON.parse(data))
         console.log(fetchedResumeData[Object.keys(fetchedResumeData)[0]].basicInfo[0])
         fetchedBasicInfo = fetchedResumeData[Object.keys(fetchedResumeData)[0]].basicInfo[0]
-        fetchedWorkExp = fetchedResumeData[Object.keys(fetchedResumeData)[0]].workExp[0]
-        fetchedProjectData = fetchedResumeData[Object.keys(fetchedResumeData)[0]].projects[0]
-        fetchedEducationData = fetchedResumeData[Object.keys(fetchedResumeData)[0]].education[0] 
-        fetchedAchivementData = fetchedResumeData[Object.keys(fetchedResumeData)[0]].achievements[0]
-        fetchedSummaryData = fetchedResumeData[Object.keys(fetchedResumeData)[0]].summary[0]
-        fetchedOthersData = fetchedResumeData[Object.keys(fetchedResumeData)[0]].others[0]
       })
       .catch((error) => {
         console.log(error)
@@ -593,104 +587,6 @@ function Editor(props) {
         });
   };
 
-  const getPreviousResume = () => {
-    switch (sections[activeSectionKey]) {
-      case sections.basicInfo: {
-
-        props.setInformation((prev) => ({
-          ...prev,
-          [sections.basicInfo]: {
-            ...prev[sections.basicInfo],
-            detail: fetchedBasicInfo,
-            sectionTitle,
-          },
-        }));
-        break;
-      }
-      case sections.workExp: {
-        const tempDetails = [...information[sections.workExp]?.details];
-        tempDetails[activeDetailIndex] = fetchedWorkExp;
-
-        props.setInformation((prev) => ({
-          ...prev,
-          [sections.workExp]: {
-            ...prev[sections.workExp],
-            details: tempDetails,
-            sectionTitle,
-          },
-        }));
-        break;
-      }
-      case sections.project: {
-        const tempDetails = [...information[sections.project]?.details];
-        tempDetails[activeDetailIndex] = fetchedProjectData;
-
-        props.setInformation((prev) => ({
-          ...prev,
-          [sections.project]: {
-            ...prev[sections.project],
-            details: tempDetails,
-            sectionTitle,
-          },
-        }));
-        break;
-      }
-      case sections.education: {
-        const tempDetails = [...information[sections.education]?.details];
-        tempDetails[activeDetailIndex] = fetchedEducationData;
-
-        props.setInformation((prev) => ({
-          ...prev,
-          [sections.education]: {
-            ...prev[sections.education],
-            details: tempDetails,
-            sectionTitle,
-          },
-        }));
-        break;
-      }
-      case sections.achievement: {
-        var tempPoints = values.points;
-
-        props.setInformation((prev) => ({
-          ...prev,
-          [sections.achievement]: {
-            ...prev[sections.achievement],
-            points: fetchedAchivementData,
-            sectionTitle,
-          },
-        }));
-        break;
-      }
-      case sections.summary: {
-        var summaryData = values.summary;
-
-        props.setInformation((prev) => ({
-          ...prev,
-          [sections.summary]: {
-            ...prev[sections.summary],
-            detail: fetchedSummaryData,
-            sectionTitle,
-          },
-        }));
-        break;
-      }
-      case sections.other: {
-        var otherData = values.other;
-
-        props.setInformation((prev) => ({
-          ...prev,
-          [sections.other]: {
-            ...prev[sections.other],
-            detail: fetchedOthersData,
-            sectionTitle,
-          },
-        }));
-        break;
-      }
-    }
-  };
-
   const handleAddNew = () => {
     const details = activeInformation?.details;
     if (!details) return;
@@ -858,7 +754,6 @@ function Editor(props) {
         {generateBody()}
 
         <button onClick={handleSubmission}>Save</button>
-        <button onClick={getPreviousResume}>Get my Previous Resume</button>
       </div>
     </div>
   );

@@ -63,7 +63,7 @@ app.post("/saveResumeData", async (req, res) => {
 const { userId, basicInfo, workExp, projects, education, achievements, summary, others } = req.body;
 console.log("basicInfo is here 2", basicInfo, userId)
 try {
-  await resumeData.updateOne({
+  await resumeData.create({
     userId, basicInfo, workExp, projects, education, achievements, summary, others
   });
   res.send({ status: "ok" });
