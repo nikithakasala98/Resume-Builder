@@ -17,7 +17,7 @@ function Navbar(){
                 <span className='nav-icon'></span>
             </label>
             <ul className='menu'>
-                <li><Link to='/'className='active' >Home</Link></li> 
+                <li><Link to='/'>Home</Link></li> 
                 <li><Link to='/features'>Features</Link></li>
                 <li><Link to='/sign-in'>Login</Link></li>
                 <li><Link to='/about'>About</Link></li>
