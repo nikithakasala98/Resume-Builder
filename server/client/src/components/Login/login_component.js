@@ -22,7 +22,7 @@ export default class Login extends Component {
     }
     console.log(email, password);
     if(email != ""  && password != ""){
-    fetch("http://localhost:5000/login-user", {
+    fetch("/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {

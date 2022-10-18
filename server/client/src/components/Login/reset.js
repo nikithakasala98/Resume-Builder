@@ -15,7 +15,7 @@ export default class reset extends Component {
     const { email} = this.state;
     console.log(email);
 
-    fetch("http://localhost:5000/forgot-password", {
+    fetch("/forgot-password", {
       method: "POST",
       crossDomain: true,
       headers: {

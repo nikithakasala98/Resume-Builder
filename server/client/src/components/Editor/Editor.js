@@ -22,7 +22,7 @@ console.log("++++++++++++++++++++", `getResumeData?useId=${window.localStorage.g
 
 function Editor(props) {
   useEffect(()=>{
-    fetch(`http://localhost:5000/getResumeData/${window.localStorage.getItem("email")}`, {
+    fetch(`/getResumeData/${window.localStorage.getItem("email")}`, {
         method: "GET",
         crossDomain: true,
         headers: {
@@ -563,7 +563,7 @@ function Editor(props) {
       }
     }
 
-      fetch("http://localhost:5000/saveResumeData", {
+      fetch("/saveResumeData", {
         method: "POST",
         crossDomain: true,
         headers: {
