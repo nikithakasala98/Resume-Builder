@@ -22,7 +22,7 @@ export default class Login extends Component {
     }
     console.log(email, password);
     if(email != ""  && password != ""){
-    fetch("/login-user", {
+    fetch("https://resume-builder-projects.herokuapp.com/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {

@@ -16,7 +16,7 @@ export default class SignUp extends Component {
     e.preventDefault();
     const { fname, lname, email, password } = this.state;
     console.log(fname, lname, email, password);
-    fetch("/register", {
+    fetch("https://resume-builder-projects.herokuapp.com/register", {
       method: "POST",
       crossDomain: true,
       headers: {

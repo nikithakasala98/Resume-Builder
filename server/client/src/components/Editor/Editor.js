@@ -22,7 +22,7 @@ console.log("++++++++++++++++++++", `getResumeData?useId=${window.localStorage.g
 
 function Editor(props) {
   useEffect(()=>{
-    fetch(`/getResumeData/${window.localStorage.getItem("email")}`, {
+    fetch(`https://resume-builder-projects.herokuapp.com/getResumeData/${window.localStorage.getItem("email")}`, {
         method: "GET",
         crossDomain: true,
         headers: {
@@ -563,7 +563,7 @@ function Editor(props) {
       }
     }
 
-      fetch("/saveResumeData", {
+      fetch("https://resume-builder-projects.herokuapp.com/saveResumeData", {
         method: "POST",
         crossDomain: true,
         headers: {

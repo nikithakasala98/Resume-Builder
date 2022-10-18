@@ -15,7 +15,7 @@ export default class reset extends Component {
     const { email} = this.state;
     console.log(email);
 
-    fetch("/forgot-password", {
+    fetch("https://resume-builder-projects.herokuapp.com/forgot-password", {
       method: "POST",
       crossDomain: true,
       headers: {
