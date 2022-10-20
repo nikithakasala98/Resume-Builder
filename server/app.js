@@ -19,7 +19,6 @@ const PORT  = process.env.PORT || 5000;
 
 const JWT_SECRET =
   "RESUMEBUILDERpestoPROJECT";
-
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -31,26 +30,33 @@ mongoose
 
 require("./db/userDetails");
 require("./db/resumeDetails");
-
+//database
 const User = mongoose.model("UserInfo");
+
 app.post("/register", async (req, res) => {
     console.log("Inside register")
   const { fname, lname, email, password } = req.body;
+
+  if(!fname || !lname || !email || !password){
+    return res.status(422).json({ error: "Please fill the fields properly"});
+  }
 
   const encryptedPassword = await bcrypt.hash(password, 10);
   try {
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
-      return res.json({ error: "User Exists" });
-    }
+      return res.status(422).json({ error: "User Exists" });
+    }else{ 
     await User.create({
       fname,
       lname,
       email,
       password: encryptedPassword,
     });
-    res.send({ status: "ok" });
+    await User.save();
+    res.status(201).send({ status: "ok" });
+    }
   } catch (error) {
     
     console.log("+++++++++++CATCH+++++++++++++++++++++", util.inspect(error))
@@ -74,10 +80,14 @@ try {
 app.post("/login-user", async (req, res) => {
   const { email, password } = req.body;
 
+  if(!email || !password){
+    return res.status(400).json({error:"Invalid details"})
+  }
+
   const user = await User.findOne({ email });
   if (!user) {
     alert("User not found !!")
-    return res.json({ error: "User Not found" });
+    return res.status(400).json({ error: "User Not found" });
   }
   if (await bcrypt.compare(password, user.password)) {
     const token = jwt.sign({ email: user.email }, JWT_SECRET);

@@ -1,7 +1,7 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route,Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route,Link} from "react-router-dom";
 
 import Login from "./components/Login/login_component";
 import SignUp from "./components/Login/signup_component";
@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Reset from "./components/Login/reset";
 
 function App() {
+  
   return (   
       <div className="App">
         <Navbar/>

@@ -52,7 +52,8 @@ export default class SignUp extends Component {
                 type="text"
                 name="fname"
                 className="form-control"
-                placeholder="First name"
+                placeholder="Enter Your First name"
+                required
                 onChange={(e) => this.setState({ fname: e.target.value })}
               />
             </div>
@@ -63,7 +64,8 @@ export default class SignUp extends Component {
                 type="text"
                 name="lname"
                 className="form-control"
-                placeholder="Last name"
+                placeholder="Enter Your Last name"
+                required
                 onChange={(e) => this.setState({ lname: e.target.value })}
               />
             </div>
@@ -74,7 +76,8 @@ export default class SignUp extends Component {
                 type="email"
                 name="email"
                 className="form-control"
-                placeholder="Enter email"
+                placeholder="Enter your email"
+                required
                 onChange={(e) => this.setState({ email: e.target.value })}
               />
             </div>
@@ -83,9 +86,10 @@ export default class SignUp extends Component {
               <label>Password</label>
               <input
                 type="password"
-                name="email"
+                name="password"
                 className="form-control"
-                placeholder="Enter password"
+                placeholder="Enter your password"
+                required
                 onChange={(e) => this.setState({ password: e.target.value })}
               />
             </div>
