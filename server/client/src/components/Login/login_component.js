@@ -82,6 +82,13 @@ export default class Login extends Component {
               <p className="forgot-password text-right">
                 <a href="/forgot-password">Forgot-Password?</a>
               </p>
+              <br/>
+              <div className="mb-3">
+                  <label>Credentials for Testing</label>
+                  <p>Email address: nikithaK@gmail.com<br/>
+                     Password: Nikitha@123
+                  </p>
+              </div>
             </form>
           </div>
         </div>
