@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import "./Login.css";
+import {Link} from 'react-router-dom';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: ""
+      email: "nikithaK@gmail.com",
+      password: "Nikitha@123"
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
   handleSubmit(e) {             
     e.preventDefault();
     const {email, password} = this.state;
@@ -83,13 +83,14 @@ export default class Login extends Component {
                 <a href="/forgot-password">Forgot-Password?</a>
               </p>
               <br/>
-              <div className="mb-3">
-                  <label>Credentials for Testing</label>
-                  <p>Email address: nikithaK@gmail.com<br/>
-                     Password: Nikitha@123
-                  </p>
-              </div>
             </form>
+            <div className="d-grid">
+            <Link to='/ResumeBuilder'>
+              <button style={{width: "100%"}} type="" className="btn btn-primary">
+                Login as Guest
+              </button>
+            </Link>
+            </div>
           </div>
         </div>
     );
