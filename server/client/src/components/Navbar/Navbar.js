@@ -33,6 +33,7 @@ class Navbar extends Component{
                 <ul className='menu'>
                     <li><Link to='/'>Home</Link></li> 
                     <li><Link to='/features'>Features</Link></li>
+                    <li><Link to='/sign-up'>Login</Link></li>
                     <li><Link to='/about'>About</Link></li>
                     <li><Link to='/contact'>Contact US</Link></li>
                     <li><Link to='/sign-in' className="hello" onClick={this.clearStorage} >Logout</Link></li>
