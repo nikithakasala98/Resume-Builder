@@ -6,9 +6,16 @@ import "./Navbar.css"
 class Navbar extends Component{
     constructor(props) {
         super(props)
+        this.state = {
+        }
+        this.clearStorage = this.clearStorage.bind(this);
     }
 
     clearStorage(){
+        if(window.localStorage.getItem("email") != ""){
+            document.getElementsByClassName("hello")[0].style.display = 'none';
+        }
+        
         window.localStorage.clear();
     }
 
@@ -28,7 +35,7 @@ class Navbar extends Component{
                     <li><Link to='/features'>Features</Link></li>
                     <li><Link to='/about'>About</Link></li>
                     <li><Link to='/contact'>Contact US</Link></li>
-                    <li><Link to='/sign-in' onClick={this.clearStorage} >Logout</Link></li>
+                    <li><Link to='/sign-in' className="hello" onClick={this.clearStorage} >Logout</Link></li>
                 </ul>
             </nav>
             </div>      
