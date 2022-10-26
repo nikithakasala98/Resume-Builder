@@ -1,9 +1,9 @@
-# Pesto Matrimony:
+# Resume-Builder:
 
 Resume builder is a software developed to simplify the task of creating a resume for individuals
 
 
-## Who is this for? (Persona)
+## Who is this for?
 
 Students preparing to apply for internships, working professionals who are targeting their next job.
 
@@ -45,7 +45,7 @@ Following system requirements need to be met in order for this application to ru
 ## Designs
 
 ### Wireframes v1.0:
- + Module: [Figma Design](ttps://www.figma.com/file/5Pi1EUP0rMWNoStUORTXy2/resume_builder?node-id=0%3A1) </br>
+ + Module: [Figma Design](https://www.figma.com/file/5Pi1EUP0rMWNoStUORTXy2/resume_builder?node-id=0%3A1) </br>
  
 ### HLD </br>
  + Design Link v1.0: [HLD](https://drive.google.com/file/d/1DXawxpEG1MH5kHuSCYZZnZ2wsMV0_WZ4/view) </br>
